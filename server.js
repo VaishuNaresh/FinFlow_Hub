@@ -17,8 +17,15 @@ const app = express();
 app.use(express.json());// why we use express.json() because we are sending data in json format from frontend so we need to parse it in backend
 app.use(cookieParser());// why we use cookie parser  because we are sending refresh token in cookie so we need to parse it in backend
 
+
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://fin-flow-hub-frontend.vercel.app"
+];
+
+
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true // why we use credentials true because we are sending cookie from frontend to backend so we need to allow it in backend
     // credentials: true mainly for allowing cookies to be sent in cross-origin requests. When the frontend and backend are on different domains or ports, 
     // browsers block cookies by default for security reasons. 
